@@ -1,6 +1,8 @@
 # Organizing List of British Colonies
 
 def main():
+
+    # dumps string of every British Colony
     foo = """Aden Protectorate
 Anglo-Egyptian Sudan
 Auckland Islands
@@ -104,22 +106,34 @@ Western Samoa
 Windward Islands
 """
 
+    # converts string to array
     array = foo.splitlines()
     print(f"There use to be {len(array)} colonies that belong to the UK")
-
-    # array.reverse()
-    # print(array)
 
     popped_array = array.pop()
     print(f"The last British colony in terms of alphabetical order is {popped_array}")
 
-    # for foo in revered_colonies:
-    #     print(foo, end=',\n', flush=True)
+    array.reverse()
+    array.insert(0, "Windward Islands")
+    print(f"{array[0]} is the last colony alphabetically.")
 
-    print(array[0])
+    array.sort()
+    print(f"{array[0]} is the first colony of the UK alphabetically")
 
-    # del array[0]
+    array.remove("Hong Kong") # Hong Kong is no longer a colony
+
+    array.append("Asgard") # that one time Asgard was subjugated to the British Empire
+    print(f"{sorted(array)} is the updated list")
     
+    # uncomment to  print the string
+    # index = 1
+    # for foo in array:
+    #     if (foo == "Hong Kong"):
+    #         print(f"{index}")
+    #         break
+    #     index += 1
+
+        
 
 if __name__ == "__main__":
     main()
