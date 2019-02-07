@@ -1,5 +1,6 @@
 # Organizing List of British Colonies
 
+
 def main():
 
     # dumps string of every British Colony
@@ -126,6 +127,10 @@ Windward Islands
     print(f"{sorted(array)} is the updated list")
     
     # uncomment to  print the string
+    # for foo in array:
+    #     print(f"{foo}", end=",\n", flush=True)
+    
+    
     # index = 1
     # for foo in array:
     #     if (foo == "Hong Kong"):
