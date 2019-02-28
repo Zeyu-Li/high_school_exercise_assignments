@@ -9,16 +9,9 @@ By: Andrew Li
 
 """
 
-import tkinter as tk
-
 def main():
-    win = tk.Tk()
+    
 
-    win.title("Soupcan")
-
-    tk.Label( win, text="soup is love").pack()
-
-    win.mainloop()
 
 if __name__ == "__main__":
     main()

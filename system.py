@@ -3,12 +3,12 @@
 Stuff
 
 """
-import os
 
 
-def main():
-    for root, dirs, files in os.walk("../"):
-        print(root)
+class main():
 
+
+    print(f"soup");
+    
 if __name__ == "__main__":
-    main()
+        main()
