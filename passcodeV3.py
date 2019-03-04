@@ -44,17 +44,12 @@ def createUser(user, foo):
 
         hashedPassword = PasswordHasher().hash(retypedPasscode)
 
-        with open('password.json', 'r',) as fp:
+        pyData = { user: hashedPassword }
 
-            feeds = json.load(fp)
+        # dumps password into json file
+        with open('passwords.json', 'w') as fp:
 
-        with open('password.json', 'w', 'utf-8') as feedsjson:
-            values = [{user: hashedPassword}]
-            feeds.append(values)
-            print(json.dump(feeds, feedsjson))
-
-            # close json file
-            open('password.json', 'w').close
+            json.dump(pyData, fp)
 
         print('Account created')
         return 0
@@ -94,7 +89,7 @@ def checkUsername(username):
 # check if username exists
 def checkUser(username):
 
-    with open('password.json', 'r') as fp:
+    with open('passwords.json', 'r') as fp:
         try: 
             json.load(username in fp)
             return True
@@ -105,10 +100,10 @@ def checkUser(username):
 def isFile():
 
     # creates json if none exists
-    if (os.path.isfile('password.json') == False):
+    if (os.path.isfile('passwords.json') == False):
 
         # create json file
-        with open('password.json', 'w') as passcode1:
+        with open('passwords.json', 'w') as passcode1:
             exists = True
             json.dump(exists, passcode1)
 
