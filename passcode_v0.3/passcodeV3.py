@@ -16,23 +16,23 @@ def login(user, foo):
     # input passcode
     passcode = bleach.clean(input('Password: '))
 
-    # checks passcode
+    # checks passcode, else retry password
+    with open('passwords.json', 'r') as fp:
+        data = json.load(fp)
 
-    try:
-        data = json.loads()
-
-    # if fails, try again
-    except:
-
-        print('Password does not match the username, try again')
-        return 1
+        if (PasswordHasher().verify(data.get(user), str(passcode)) == True ):
+            print('Successfully logged in')
+            return 0
+        else:
+            print('Password does not match the username, try again\n')
+            return 1
 
 # creates user
 def createUser(user, foo):
 
     newPasscode = bleach.clean(input('New password: '))
 
-    if (len(newPasscode) < 1): # temp change
+    if (len(newPasscode) < 8): # temp change
         print('Length of password is too short. \nThe passwork has to be at least 8 characters long')
         return 1
 
@@ -96,8 +96,8 @@ def checkUser(username):
 
     with open('passwords.json', 'r') as fp:
         try: 
-            json.load(username in fp)
-            return True
+            check = json.load(fp)
+            return (username in check)
         except:
             return False
 
@@ -114,38 +114,27 @@ def isFile():
 # main calls entire system
 def main():
 
-    # print('This is The Passcode Program \n Please enter your username')
+    print('This is The Passcode Program \n Please enter your username')
 
-    with open('passwords.json', 'r') as fp:
-    
-        try: 
-            thing = json.load("sadder" in fp)
-            print('is in thing')
-            print(thing)
-
-        except:
-            print('is not in it')
-            print(json.load("sadder" in fp))
-
-    # namedUser = username()
+    namedUser = username()
 
     # # redo this
 
-    # if (namedUser[0] == False):
+    if (namedUser[0] == False):
 
-    #     print('Welcome new user!\n')
+        print('Welcome new user!\n')
 
-    #     foo = True
+        foo = True
 
-    #     while foo:
-    #         foo = createUser(namedUser[1], foo)
+        while foo:
+            foo = createUser(namedUser[1], foo)
 
-    # else: 
+    else: 
 
-    #     foo = True
+        foo = True
 
-    #     while foo:
-    #         foo = login(namedUser[1], foo)
+        while foo:
+            foo = login(namedUser[1], foo)
 
     print("Done operations!")
 
