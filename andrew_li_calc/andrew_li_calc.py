@@ -29,24 +29,49 @@ class operation:
 
     def division(self, x, y):
 
+        # check for denominator is 0
+        if (y == 0):
+            return ("Cannot divide by zero")
+
         return (x / y)
 
     def longDivision(self, x, y):
 
+        if (y == 0):
+            return ("Cannot divide by zero")
         return (math.floor(x / y), x % y)
 
     def squareRoot(self, x):
 
+        # x is the absolute value to not to cause errors
         x = abs(x)
 
+        if (index == 0 or index == 1):
+            factor = int(index)
+
+        # init array
+        array = []
+
+        # the max number that needs to be checked
         max = math.floor(x**.5)
 
+        # loop through possible factors
         for index in range(max):
-            if (index == 0 or index == 1):
-                sq = int(index)
-                break
-            elif ():
-                print("sad")
+
+            # if index is factor count the number of factors
+            elif (x % index == 0):
+
+                init = 0
+                while True:
+                    if (isinstance(x/index, int)):
+                        init=+1
+                        x = x/index
+                    else:
+                        break
+                    
+                array.append((index, init))
+
+        print(array)
 
 
             # if (x/index )
@@ -84,7 +109,7 @@ def main():
 # input functions
 def foo():
 
-    print("If you wish to quit, type q or quit and press enter")
+    print("If you wish to quit, type \"q\" or \"quit\" and press enter")
 
     # grabs first integer input as str with end and start whitespace removed
     operator = str(input("First Integer: ")).strip()
@@ -159,14 +184,26 @@ def foo():
         result = op.multiplication(firstNumber, secondNumber)
     elif (operator == "/"):
         result = op.division(firstNumber, secondNumber)
+        if (result == "Cannot divide by zero"):
+            print("Cannot divide by zero")
+            return 1
     elif (operator == "long /"):
         result = op.longDivision(firstNumber, secondNumber)
+        if (result == "Cannot divide by zero"):
+            print("Cannot divide by zero")
+            return 1
 
     # special case for long division
     if (operator == "long /"):
-        print(str(result[0]) + " & a remainder of " + str(result[1]))
+        if (result == "Cannot divide by zero"):
+            print(result)
+        else:
+            print(str(result[0]) + " & a remainder of " + str(result[1]))
     else:
         print(result)
+
+    print("\nNext operation \n")
+    return 1
 
 
 # system calls name
