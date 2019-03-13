@@ -46,11 +46,12 @@ class operation:
                 sq = int(index)
                 break
             elif ():
+                print("sad")
 
 
-            if (x/index )
+            # if (x/index )
 
-        while (i = 0; i > max; i++ ):
+        # while (i = 0; i > max; i++ ):
 
         try:
             print(x**.5)
@@ -118,10 +119,12 @@ def foo():
     # test if input is an operator
     try:
         test = (operator in operatorList)
+        if (test == False):
+            raise Exception("not an operator")
 
     # else contine through function
     except:
-        print("Not a specified operator, please try again")
+        print("Not a specified operator, please try again\n")
         return 1
 
     # shortened class call
