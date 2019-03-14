@@ -13,21 +13,29 @@ This is a program that calculates math operations
 import math
 
 
-# operation class
 class operation:
+    """ class that houses operator methods """
     def addition(self, x, y):
+
+        """ addition method """
 
         return (y + x)
 
     def subtraction(self, x, y):
 
+        """ subtraction method """
+
         return (x - y)
 
     def multiplication(self, x, y):
 
+        """ multiplication method """
+
         return (y * x)
 
     def division(self, x, y):
+
+        """ division method """
 
         # check for denominator is 0
         if (y == 0):
@@ -37,6 +45,8 @@ class operation:
 
     def longDivision(self, x, y):
 
+        """ exact division method """
+
         # check for denominator is 0
         if (y == 0):
             return ("Cannot divide by zero")
@@ -44,6 +54,8 @@ class operation:
         return (math.floor(x / y), x % y)
 
     def squareRoot(self, x):
+
+        """ square root method """
 
         negative = False
 
@@ -92,13 +104,14 @@ class operation:
         elif (not negative):
             return (str(wholeNumber) + "√" + str(x))
         else:
-            return (str(wholeNumber) + "i * √" + str(x))
+            return (str(wholeNumber) + "i √" + str(x))
 
         return "error unknown"
 
 
-# main call function
 def main():
+
+    # main call function
 
     # welcome text
 
@@ -114,9 +127,8 @@ def main():
     print("\nThanks for using Andrew's Calculator")
 
 
-# input functions
 def foo():
-
+    """ input functions """
     print("If you wish to quit, type \"q\" or \"quit\" and press enter")
 
     # grabs first integer input as str with end and start whitespace removed
@@ -214,8 +226,9 @@ def foo():
     return 1
 
 
-# multiples lists for answer to square root functions
 def multipleList(foo):
+
+    """ multiples lists for answer to square root functions """
 
     result = 1
     for x in foo:
