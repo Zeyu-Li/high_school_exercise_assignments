@@ -3,7 +3,7 @@
 Course: CS 30
 Period: 3
 Date created: March 12, 2019
-Date completed: March 14, 2019
+Date completed: March 13, 2019
 By: Andrew Li
 
 This is a program that calculates math operations
@@ -43,11 +43,19 @@ class operation:
 
     def squareRoot(self, x):
 
+        negative = False
+
+        if (x < 0):
+            negative = True
+
         # x is the absolute value to not to cause errors
         x = abs(x)
 
-        if (index == 0 or index == 1):
-            factor = int(index)
+        if (x == 0 or x == 1):
+            if (negative == True):
+                return "i"
+            else:
+                return x
 
         # init array
         array = []
@@ -55,38 +63,38 @@ class operation:
         # the max number that needs to be checked
         max = math.floor(x**.5)
 
+        # init variables
+        check = False
+        timesIn = 0
+
         # loop through possible factors
         for index in range(max):
 
-            # if index is factor count the number of factors
-            elif (x % index == 0):
+            if (index == 0 or index == 1):
+                continue
 
-                init = 0
-                while True:
-                    if (isinstance(x/index, int)):
-                        init=+1
-                        x = x/index
-                    else:
-                        break
-                    
-                array.append((index, init))
+            while (x % (index**2) == 0):
+                x = int(x/(index**2))
+                timesIn = timesIn + 1
+                check = True
 
-        print(array)
+            if (check):
+                array.append(index**timesIn)
+                timesIn = 0
+                check = False
 
+        wholeNumber = multipleList(array)
 
-            # if (x/index )
+        if (x == 1 and negative == False):
+            return wholeNumber
+        elif (x == 1 and negative == True):
+            return (str(wholeNumber) + "i")
+        elif (negative == False):
+            return (str(wholeNumber) + "√" + str(x))
+        else:
+            return (str(wholeNumber) + "i * √" + str(x))
 
-        # while (i = 0; i > max; i++ ):
-
-        try:
-            print(x**.5)
-        except:
-            return 1
-
-        # negative case
-        # if (x <= 0):
-
-        return x
+        return "error unknown"
 
 
 # main call function
@@ -134,7 +142,7 @@ def foo():
     print("Enter \"*\" for multiplication")
     print("Enter \"/\" for division")
     print("Enter \"long /\" for long division")
-    print("Enter \"sqrt\" for long division")
+    print("Enter \"sqrt\" for exact square roots")
 
     # get operator input
     operator = str(input("Operator: ")).strip()
@@ -158,7 +166,7 @@ def foo():
     # special case for square root
     if (operator == "sqrt"):
         print(op.squareRoot(firstNumber))
-        return 0
+        return 1
 
     print("Now input the second number (must be integer) to operate on")
 
@@ -205,6 +213,14 @@ def foo():
     print("\nNext operation \n")
     return 1
 
+
+# multiples lists for answer to square root functions
+def multipleList(foo):
+
+    result = 1
+    for x in foo: 
+         result = result * x  
+    return result 
 
 # system calls name
 if __name__ == "__main__":
