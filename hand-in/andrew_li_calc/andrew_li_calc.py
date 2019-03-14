@@ -217,6 +217,8 @@ def foo():
     if (operator == "rem /"):
         if (result == "Cannot divide by zero"):
             print(result)
+        elif (result[1] == 0):
+            print(str(result[0]))
         else:
             print(str(result[0]) + " & a remainder of " + str(result[1]))
     else:
