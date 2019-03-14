@@ -3,13 +3,13 @@
 Course: CS 30
 Period: 3
 Date created: March 12, 2019
-Date completed: March 13, 2019
+Date completed: March 14, 2019
 By: Andrew Li
 
 This is a program that calculates math operations
 """
 
-# import modules
+# import module math for square roots
 import math
 
 
@@ -37,8 +37,10 @@ class operation:
 
     def longDivision(self, x, y):
 
+        # check for denominator is 0
         if (y == 0):
             return ("Cannot divide by zero")
+
         return (math.floor(x / y), x % y)
 
     def squareRoot(self, x):
@@ -52,13 +54,10 @@ class operation:
         x = abs(x)
 
         if (x == 0 or x == 1):
-            if (negative == True):
+            if (negative):
                 return "i"
             else:
                 return x
-
-        # init array
-        array = []
 
         # the max number that needs to be checked
         max = math.floor(x**.5)
@@ -66,6 +65,7 @@ class operation:
         # init variables
         check = False
         timesIn = 0
+        array = []
 
         # loop through possible factors
         for index in range(max):
@@ -85,11 +85,11 @@ class operation:
 
         wholeNumber = multipleList(array)
 
-        if (x == 1 and negative == False):
+        if (x == 1 and not negative):
             return wholeNumber
-        elif (x == 1 and negative == True):
+        elif (x == 1 and negative):
             return (str(wholeNumber) + "i")
-        elif (negative == False):
+        elif (not negative):
             return (str(wholeNumber) + "√" + str(x))
         else:
             return (str(wholeNumber) + "i * √" + str(x))
@@ -106,7 +106,7 @@ def main():
     print("To start this program, enter the number(must be an integer)")
     working = True
 
-    # If errors occur, loop
+    # if errors occur, loop
     while working:
         working = foo()
 
@@ -120,39 +120,39 @@ def foo():
     print("If you wish to quit, type \"q\" or \"quit\" and press enter")
 
     # grabs first integer input as str with end and start whitespace removed
-    operator = str(input("First Integer: ")).strip()
+    firstNumber = str(input("First Integer: ")).strip()
 
     # test if q or quit have been pressed
-    if (operator == "q" or operator == "quit"):
+    if (firstNumber == "q" or firstNumber == "quit"):
         return 0
 
     # test if input is number
     try:
-        firstNumber = int(operator)
+        firstNumber = int(firstNumber)
 
     # if input is not number, loop through the whole function (continue)
     except:
         print("The input is not a valid integer")
         return 1
 
-    # options
-    print("Now summit the operator given the following options")
+    # options for operators
+    print("Now summit the operator given the following options:")
     print("Enter \"+\" for addition")
     print("Enter \"-\" for addition")
     print("Enter \"*\" for multiplication")
     print("Enter \"/\" for division")
-    print("Enter \"long /\" for long division")
+    print("Enter \"rem /\" for division with remainder")
     print("Enter \"sqrt\" for exact square roots")
 
     # get operator input
     operator = str(input("Operator: ")).strip()
 
-    operatorList = ["+", "-", "*", "/", "long /", "sqrt"]
+    operatorList = ["+", "-", "*", "/", "rem /", "sqrt"]
 
     # test if input is an operator
     try:
         test = (operator in operatorList)
-        if (test == False):
+        if (not test):
             raise Exception("not an operator")
 
     # else contine through function
@@ -195,14 +195,14 @@ def foo():
         if (result == "Cannot divide by zero"):
             print("Cannot divide by zero")
             return 1
-    elif (operator == "long /"):
+    elif (operator == "rem /"):
         result = op.longDivision(firstNumber, secondNumber)
         if (result == "Cannot divide by zero"):
             print("Cannot divide by zero")
             return 1
 
     # special case for long division
-    if (operator == "long /"):
+    if (operator == "rem /"):
         if (result == "Cannot divide by zero"):
             print(result)
         else:
@@ -218,9 +218,10 @@ def foo():
 def multipleList(foo):
 
     result = 1
-    for x in foo: 
-         result = result * x  
-    return result 
+    for x in foo:
+        result = result * x
+
+    return result
 
 # system calls name
 if __name__ == "__main__":
