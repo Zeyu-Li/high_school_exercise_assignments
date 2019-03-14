@@ -171,6 +171,12 @@ def multipleList(foo):
 
     """ multiples lists for answer to square root functions """
 
+    # sourced from:
+    # Striver
+    # March 13, 2019
+    # Python | Multiply all numbers in the list
+    # https://www.geeksforgeeks.org/python-multiply-numbers-list-3-different-ways/
+
     result = 1
     for x in foo:
         result = result * x
