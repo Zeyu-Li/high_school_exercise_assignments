@@ -22,9 +22,11 @@ def login(user, foo):
 
         if (PasswordHasher().verify(data.get(user), str(passcode)) == True ):
             print('Successfully logged in')
+            fp.close()
             return 0
         else:
             print('Password does not match the username, try again\n')
+            fp.close()
             return 1
 
 # creates user
@@ -46,7 +48,7 @@ def createUser(user, foo):
 
         # retrieves data from json and appends
 
-        with open('passwords.json') as fp:
+        with open('passwords.json', 'r') as fp:
             data = json.load(fp)
 
         # dumps password into json file
@@ -57,6 +59,8 @@ def createUser(user, foo):
             json.dump(data, fp)
 
         print('Account created')
+        
+        fp.close()
         return 0
 
     else:
@@ -97,8 +101,11 @@ def checkUser(username):
     with open('passwords.json', 'r') as fp:
         try: 
             check = json.load(fp)
+            fp.close()
             return (username in check)
         except:
+
+            fp.close()
             return False
 
 # checks if file exists
@@ -110,6 +117,7 @@ def isFile():
         # inits json file
         with open('passwords.json', 'w') as fp:
             json.dumps('')
+            fp.close()
 
 # main calls entire system
 def main():
