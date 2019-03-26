@@ -4,17 +4,19 @@ Course: CS 30
 Period: 3
 Date created: March 12, 2019
 Date completed: March 14, 2019
+Date last updated: March 26, 2019
 By: Andrew Li
 
 This is a program that calculates math operations
 """
 
 # import module math for square roots
-import math
+from math import floor
 
 
 class operation:
     """ class that houses operator methods """
+
     def addition(self, x, y):
 
         """ addition method """
@@ -50,6 +52,8 @@ class operation:
         # check for denominator is 0
         if (y == 0):
             return ("Cannot divide by zero")
+        if (y < 0 or x < 0):
+            return ("Only accepts positive non-zero integer inputs")
 
         return (math.floor(x / y), x % y)
 
@@ -57,6 +61,7 @@ class operation:
 
         """ square root method """
 
+        # negative flag
         negative = False
 
         if (x < 0):
@@ -72,7 +77,7 @@ class operation:
                 return x
 
         # the max number that needs to be checked
-        max = math.floor(x**.5)
+        max = floor(x**.5)
 
         # init variables
         check = False
@@ -80,11 +85,11 @@ class operation:
         array = []
 
         # loop through possible factors
-        for index in range(max):
+        for index in range(2, max):
 
-            if (index == 0 or index == 1):
-                continue
+            # if index equals 0 or 1, skip b/c it has already been checked
 
+            # loop through square numbers to see if it is divisible
             while (x % (index**2) == 0):
                 x = int(x/(index**2))
                 timesIn = timesIn + 1
@@ -97,6 +102,7 @@ class operation:
 
         wholeNumber = multipleList(array)
 
+        # outputs
         if (x == 1 and not negative):
             return wholeNumber
         elif (x == 1 and negative):
@@ -106,12 +112,10 @@ class operation:
         else:
             return (str(wholeNumber) + "i √" + str(x))
 
-        return "error unknown"
-
 
 def main():
 
-    # main call function
+    """ main function call """
 
     # welcome text
 
@@ -119,7 +123,7 @@ def main():
     print("To start this program, enter the number(must be an integer)")
     working = True
 
-    # if errors occur, loop
+    # if errors occur, loop through the whole function again
     while working:
         working = foo()
 
@@ -129,6 +133,7 @@ def main():
 
 def foo():
     """ input functions """
+
     print("If you wish to quit, type \"q\" or \"quit\" and press enter")
 
     # grabs first integer input as str with end and start whitespace removed
@@ -148,13 +153,15 @@ def foo():
         return 1
 
     # options for operators
-    print("Now summit the operator given the following options:")
-    print("Enter \"+\" for addition")
-    print("Enter \"-\" for addition")
-    print("Enter \"*\" for multiplication")
-    print("Enter \"/\" for division")
-    print("Enter \"rem /\" for division with remainder")
-    print("Enter \"sqrt\" for exact square roots")
+    print("""
+    Now summit the operator given the following options:\n
+    Enter \"+\" for addition
+    Enter \"-\" for addition
+    Enter \"*\" for multiplication
+    Enter \"/\" for division
+    Enter \"rem /\" for division with remainder
+    Enter \"sqrt\" for exact square roots
+    """)
 
     # get operator input
     operator = str(input("Operator: ")).strip()
@@ -210,14 +217,15 @@ def foo():
     elif (operator == "rem /"):
         result = op.longDivision(firstNumber, secondNumber)
         if (result == "Cannot divide by zero"):
-            print("Cannot divide by zero")
+            print(result)
+            return 1
+        elif (result == "Only accepts positive non-zero integer inputs"):
+            print(result)
             return 1
 
     # special case for long division
     if (operator == "rem /"):
-        if (result == "Cannot divide by zero"):
-            print(result)
-        elif (result[1] == 0):
+        if (result[1] == 0):
             print(str(result[0]))
         else:
             print(str(result[0]) + " & a remainder of " + str(result[1]))
