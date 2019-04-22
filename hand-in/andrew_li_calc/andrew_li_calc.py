@@ -18,66 +18,60 @@ class operation:
     """ class that houses operator methods """
 
     def addition(self, x, y):
-
         """ addition method """
 
-        return (y + x)
+        return y + x
 
     def subtraction(self, x, y):
-
         """ subtraction method """
 
-        return (x - y)
+        return x - y
 
     def multiplication(self, x, y):
-
         """ multiplication method """
 
-        return (y * x)
+        return y * x
 
     def division(self, x, y):
-
         """ division method """
 
         # check for denominator is 0
-        if (y == 0):
-            return ("Cannot divide by zero")
+        if y == 0:
+            return "Cannot divide by zero"
 
-        return (x / y)
+        return x / y
 
     def longDivision(self, x, y):
-
         """ exact division method """
 
         # check for denominator is 0
-        if (y == 0):
-            return ("Cannot divide by zero")
-        if (y < 0 or x < 0):
-            return ("Only accepts positive non-zero integer inputs")
+        if y == 0:
+            return "Cannot divide by zero"
+        if y < 0 or x < 0:
+            return "Only accepts positive non-zero integer inputs"
 
-        return (math.floor(x / y), x % y)
+        return floor(x / y), x % y
 
     def squareRoot(self, x):
-
         """ square root method """
 
         # negative flag
         negative = False
 
-        if (x < 0):
+        if x < 0:
             negative = True
 
         # x is the absolute value to not to cause errors
         x = abs(x)
 
-        if (x == 0 or x == 1):
-            if (negative):
+        if x == 0 or x == 1:
+            if negative:
                 return "i"
             else:
                 return x
 
         # the max number that needs to be checked
-        max = floor(x**.5)
+        max = floor(x**.5)+1
 
         # init variables
         check = False
@@ -95,7 +89,7 @@ class operation:
                 timesIn = timesIn + 1
                 check = True
 
-            if (check):
+            if check:
                 array.append(index**timesIn)
                 timesIn = 0
                 check = False
@@ -103,32 +97,16 @@ class operation:
         wholeNumber = multipleList(array)
 
         # outputs
-        if (x == 1 and not negative):
+        if x == 1 and not negative:
             return wholeNumber
-        elif (x == 1 and negative):
-            return (str(wholeNumber) + "i")
-        elif (not negative):
-            return (str(wholeNumber) + "√" + str(x))
+        elif x == 1 and negative:
+            return str(wholeNumber) + "i"
+        elif not negative:
+            if wholeNumber == 1:
+                return "√" + str(x)
+            return str(wholeNumber) + "√" + str(x)
         else:
-            return (str(wholeNumber) + "i √" + str(x))
-
-
-def main():
-
-    """ main function call """
-
-    # welcome text
-
-    print("Hello user, and welcome to the calculator app on terminal\n")
-    print("To start this program, enter the number(must be an integer)")
-    working = True
-
-    # if errors occur, loop through the whole function again
-    while working:
-        working = foo()
-
-    # end note
-    print("\nThanks for using Andrew's Calculator")
+            return str(wholeNumber) + "i √" + str(x)
 
 
 def foo():
@@ -140,7 +118,7 @@ def foo():
     firstNumber = str(input("First Integer: ")).strip()
 
     # test if q or quit have been pressed
-    if (firstNumber == "q" or firstNumber == "quit"):
+    if firstNumber == "q" or firstNumber == "quit":
         return 0
 
     # test if input is number
@@ -171,7 +149,7 @@ def foo():
     # test if input is an operator
     try:
         test = (operator in operatorList)
-        if (not test):
+        if not test:
             raise Exception("not an operator")
 
     # else contine through function
@@ -183,7 +161,7 @@ def foo():
     op = operation()
 
     # special case for square root
-    if (operator == "sqrt"):
+    if operator == "sqrt":
         print(op.squareRoot(firstNumber))
         return 1
 
@@ -203,29 +181,29 @@ def foo():
     print("The answer is: ")
 
     # switch statements to figure out which operations to do
-    if (operator == "+"):
+    if operator == "+":
         result = op.addition(firstNumber, secondNumber)
-    elif (operator == "-"):
+    elif operator == "-":
         result = op.subtraction(firstNumber, secondNumber)
-    elif (operator == "*"):
+    elif operator == "*":
         result = op.multiplication(firstNumber, secondNumber)
-    elif (operator == "/"):
+    elif operator == "/":
         result = op.division(firstNumber, secondNumber)
-        if (result == "Cannot divide by zero"):
+        if result == "Cannot divide by zero":
             print("Cannot divide by zero")
             return 1
-    elif (operator == "rem /"):
+    elif operator == "rem /":
         result = op.longDivision(firstNumber, secondNumber)
-        if (result == "Cannot divide by zero"):
+        if result == "Cannot divide by zero":
             print(result)
             return 1
-        elif (result == "Only accepts positive non-zero integer inputs"):
+        elif result == "Only accepts positive non-zero integer inputs":
             print(result)
             return 1
 
     # special case for long division
-    if (operator == "rem /"):
-        if (result[1] == 0):
+    if operator == "rem /":
+        if result[1] == 0:
             print(str(result[0]))
         else:
             print(str(result[0]) + " & a remainder of " + str(result[1]))
@@ -237,7 +215,6 @@ def foo():
 
 
 def multipleList(foo):
-
     """ multiples lists for answer to square root functions """
 
     # sourced from:
@@ -250,6 +227,23 @@ def multipleList(foo):
         result = result * x
 
     return result
+
+
+def main():
+    """ main function call """
+
+    # welcome text
+
+    print("Hello user, and welcome to the calculator app on terminal\n")
+    print("To start this program, enter the number(must be an integer)")
+    working = True
+
+    # if errors occur, loop through the whole function again
+    while working:
+        working = foo()
+
+    # end note
+    print("\nThanks for using Andrew's Calculator")
 
 
 # system calls name
