@@ -5,15 +5,15 @@ Period: 3
 Date created: 
 Date completed: 
 By: Andrew Li
-*description
 
+*description 
 """
-
+import json
 # import modules
 
 
 def main():
-    
+
     
 
 # system calls name
