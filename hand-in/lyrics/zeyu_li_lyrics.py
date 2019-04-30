@@ -1,16 +1,17 @@
-""" Lyrics Extracter -0.1
+""" Lyrics Extracter 0.1
 
 Course: CS 30
 Period: 3
-Date created: 
-Date completed: 
+Date created: April 29, 2019
+Date completed: April 30, 2019
 By: Andrew Li
 Extracting song lyrics from string and out outputting as a text file
 """
 
+
 def main():
 
-    lyrics = """ 
+    lyrics = """
 Yo listen up, here's the story
 About a little guy that lives in a blue world
 And all day and all night and everything he sees is just blue

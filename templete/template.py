@@ -6,9 +6,8 @@ Date created:
 Date completed: 
 By: Andrew Li
 
-*description 
+*description
 """
-import json
 # import modules
 
 

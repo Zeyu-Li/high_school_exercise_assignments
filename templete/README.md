@@ -1,2 +1,2 @@
-# Python Calcutor Project
+# Python * Project
 

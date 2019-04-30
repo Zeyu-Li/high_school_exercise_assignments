@@ -1,0 +1,4 @@
+In Python you can:
+go through list
+make Django server
+etc
