@@ -9,7 +9,7 @@ This project folder is a collection of early python projects.
 
 * hand-in - projects handed into Google Classroom
 * template - template project, to be cloned  
-* test - test projects that are to be achieved or discarded due to incompetency
+* test - test projects that are to be achieved or discarded due to incompetence
 
 ## Projects
 
